@@ -1,174 +1,176 @@
 <!DOCTYPE html>
 <html>
 <style>
-body {
+  body {
     margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color:#F8EACA;
-}
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F8EACA;
+  }
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #F8EACA;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  input[type=text],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #F8EACA;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-input[type=submit] {
-  width: 100%;
-  background-color: burlywood;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  input[type=submit] {
+    width: 100%;
+    background-color: burlywood;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-input[type=submit]:hover {
-  background-color: lightgray;
-}
+  input[type=submit]:hover {
+    background-color: lightgray;
+  }
 
-div.container {
-  border-radius: 5px;
-  background-color: #F8EACA;
-  padding: 20px;
-}
-.topnav {
-      overflow: hidden;
-      background-color: #F8EACA;
-    }
-    
-    .topnav a {
-      float: left;
-      color: orange;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: bold;
-    }
-    
-    .topnav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-    
-    /* Create a right-aligned (split) link inside the navigation bar */
-    .topnav a.split {
-      float: right;
-      color: black;
-      font-weight: bold;
-    }
-    .btn {
+  div.container {
+    border-radius: 5px;
+    background-color: #F8EACA;
+    padding: 20px;
+  }
+
+  .topnav {
+    overflow: hidden;
+    background-color: #F8EACA;
+  }
+
+  .topnav a {
+    float: left;
+    color: orange;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  /* Create a right-aligned (split) link inside the navigation bar */
+  .topnav a.split {
+    float: right;
+    color: black;
+    font-weight: bold;
+  }
+
+  .btn {
     border: 2px solid black;
     background-color: white;
     color: black;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
-    }
-    .search {
+  }
+
+  .search {
     border-color: burlywood;
     color: black;
-    }
+  }
 
-    .search:hover {
+  .search:hover {
     background-color: burlywood;
     color: white;
-    }
-
+  }
 </style>
+
 <body>
 
-    <div class="topnav">
-        <div class="buttons">
-          <a class="active" href="index.html">Guitar Inventory Managment</a>
-          <a href="add.html"class="split">Add</a>
-          <a href="search.html" class="split">Search</a>
-          <a href="about.html"class="split">About</a>
-        </div>
+  <div class="topnav">
+    <div class="buttons">
+      <a class="active" href="index.html">Guitar Inventory Management</a>
+      <a href="add.html" class="split">Add</a>
+      <a href="search.html" class="split">Search</a>
+      <a href="about.html" class="split">About</a>
     </div>
+  </div>
 
-<div class="container">
-   
+  <div class="container">
+
     <label for="builder">Builder</label>
-    <input type="text" id="builder" name="builder">
+    <input type="text" id="builderInput" name="builder">
 
     <label for="Model">Model</label>
-    <input type="text" id="Model" name="Model">
+    <input type="text" id="modelInput" name="Model">
 
     <label for="Type">Type</label>
-    <input type="text" id="Type" name="Type">
+    <input type="text" id="typeInput" name="Type">
 
     <label for="BackWood">Back wood</label>
-    <input type="text" id="BackWood" name="BackWood">
+    <input type="text" id="backWoodInput" name="BackWood">
 
     <label for="TopWood">Top wood</label>
-    <input type="text" id="TopWood" name="TopWood">
+    <input type="text" id="topWoodInput" name="TopWood">
 
     <button class="btn search" onclick="performSearch()">Search</button>
 
     <table id="searchResultTable">
-        <!-- Result table will be populated here -->
+      <!-- Result table will be populated here -->
     </table>
-</div>
+  </div>
 
-<script>
+  <script>
     function performSearch() {
-        // Hardcoded list of guitars for demonstration purposes
-        let guitarList = [
-            { "Builder": "Fender", "Model": "Stratocaster", "Type": "Electric", "BackWood": "Alder", "TopWood": "Maple" },
-            { "Builder": "Gibson", "Model": "Les Paul", "Type": "Electric", "BackWood": "Mahogany", "TopWood": "Maple" },
-            { "Builder": "test", "Model": "test", "Type": "test", "BackWood": "test", "TopWood": "test" },
-            { "Builder": "Taylor", "Model": "814ce", "Type": "Acoustic", "BackWood": "Rosewood", "TopWood": "Spruce" },
-            { "Builder": "Ibanez", "Model": "RG550", "Type": "Electric", "BackWood": "Basswood", "TopWood": "Maple" }
-        ];
-    
-        // Get user input values
-        let builderInput = document.getElementById("builderInput").value.toLowerCase();
-        let modelInput = document.getElementById("modelInput").value.toLowerCase();
-        let typeInput = document.getElementById("typeInput").value.toLowerCase();
-        let backWoodInput = document.getElementById("backWoodInput").value.toLowerCase();
-        let topWoodInput = document.getElementById("topWoodInput").value.toLowerCase();
-    
-        // Filter guitars based on user input
-        let searchResults = guitarList.filter(guitar =>
-            guitar.Builder.toLowerCase().includes(builderInput) &&
-            guitar.Model.toLowerCase().includes(modelInput) &&
-            guitar.Type.toLowerCase().includes(typeInput) &&
-            guitar.BackWood.toLowerCase().includes(backWoodInput) &&
-            guitar.TopWood.toLowerCase().includes(topWoodInput)
-        );
-    
-        // Display search results in the table
-        displaySearchResults(searchResults);
+      // Get user input values
+      let builderInput = document.getElementById("builderInput").value.toLowerCase();
+      let modelInput = document.getElementById("modelInput").value.toLowerCase();
+      let typeInput = document.getElementById("typeInput").value.toLowerCase();
+      let backWoodInput = document.getElementById("backWoodInput").value.toLowerCase();
+      let topWoodInput = document.getElementById("topWoodInput").value.toLowerCase();
+
+      // Fetch data from the backend API
+      fetch(`http://localhost:8081/inventory/search?builder=${builderInput}&model=${modelInput}&type=${typeInput}&backWood=${backWoodInput}&topWood=${topWoodInput}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Display search results in the table
+          displaySearchResults(data);
+        })
+        .catch(error => {
+          // Handle errors: display a pop-up message
+          alert(`Something went wrong. ${error.message}`);
+          console.error('Error:', error);
+        });
     }
-    
+
     function displaySearchResults(results) {
-        let table = document.getElementById("searchResultTable");
-        table.innerHTML = ""; // Clear previous results
-    
-        // Create table header
-        let headerRow = table.insertRow(0);
-        for (let key in results[0]) {
-            let headerCell = headerRow.insertCell(-1);
-            headerCell.textContent = key;
+      let table = document.getElementById("searchResultTable");
+      table.innerHTML = ""; // Clear previous results
+
+      // Create table header
+      let headerRow = table.insertRow(0);
+      for (let key in results[0]) {
+        let headerCell = headerRow.insertCell(-1);
+        headerCell.textContent = key;
+      }
+
+      // Create table rows with search results
+      for (let guitar of results) {
+        let row = table.insertRow(-1);
+        for (let key in guitar) {
+          let cell = row.insertCell(-1);
+          cell.textContent = guitar[key];
         }
-    
-        // Create table rows with search results
-        for (let guitar of results) {
-            let row = table.insertRow(-1);
-            for (let key in guitar) {
-                let cell = row.insertCell(-1);
-                cell.textContent = guitar[key];
-            }
-        }
+      }
     }
-    </script>
+  </script>
 
 </body>
+
 </html>

@@ -122,32 +122,60 @@ div.container {
 
 <script>
     function displayFormData() {
-      // Get form elements by their IDs
-      let serialNumber = document.getElementById("serialNumber").value;
-      let price = document.getElementById("Price").value;
-      let builder = document.getElementById("builder").value;
-      let model = document.getElementById("Model").value;
-      let type = document.getElementById("Type").value;
-      let backWood = document.getElementById("BackWood").value;
-      let topWood = document.getElementById("TopWood").value;
-    
-      // Create a JavaScript object with the form data
-      let guitarData = {
-        "SerialNumber": serialNumber,
-        "Price": price,
-        "Builder": builder,
-        "Model": model,
-        "Type": type,
-        "BackWood": backWood,
-        "TopWood": topWood
-      };
-    
-      // Convert the JavaScript object to JSON format
-      let jsonData = JSON.stringify(guitarData, null, 2);
-    
-      // Display the JSON data in a popup
-      alert("Guitar Data:\n" + jsonData);
+    // Get form elements by their IDs
+    let serialNumber = document.getElementById("serialNumber").value;
+    let price = document.getElementById("Price").value;
+    let builder = document.getElementById("builder").value;
+    let model = document.getElementById("Model").value;
+    let type = document.getElementById("Type").value;
+    let backWood = document.getElementById("BackWood").value;
+    let topWood = document.getElementById("TopWood").value;
+
+    // Check if any field is empty
+    if (!serialNumber || !price || !builder || !model || !type || !backWood || !topWood) {
+        alert('Please enter a value for all fields.');
+        return;
     }
+
+    // Create a JavaScript object with the form data
+    let guitarData = {
+        "serialNumber": serialNumber,
+        "price": parseFloat(price),
+        "builder": builder,
+        "model": model,
+        "type": type,
+        "backWood": backWood,
+        "topWood": topWood
+    };
+
+    // Send data to the backend API
+    fetch('http://localhost:8081/inventory/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(guitarData),
+    })
+    .then(response => {
+    if (response.status === 204) {
+        // No content in the response (HTTP 204 No Content)
+        alert("The guitar was added to the system.");
+    } else {
+        return response.json(); // Attempt to parse JSON for other cases
+    }
+})
+.then(data => {
+    if (data) {
+        alert("The guitar was added to the system.");
+    } else {
+        alert("Empty or invalid response received.");
+    }
+})
+.catch(error => {
+    alert("Something went wrong. Please try again or contact the customer support team.");
+    console.error('Error:', error);
+});
+}
     </script>
 
 </body>
