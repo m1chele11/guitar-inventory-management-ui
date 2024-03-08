@@ -31,12 +31,21 @@ const guitarInventory = [
   
     const newGuitar = { name: guitarName, type: guitarType, quantity: quantity };
     
-    // Display the data in JSON format using a pop-up
-    alert(JSON.stringify(newGuitar));
-  
-    // For now, you can push the new guitar to the inventory array
-    guitarInventory.push(newGuitar);
-  }
+    fetch('https://guitar-service.onrender.com', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN, //token
+    },
+    body: JSON.stringify(newGuitar),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Guitar added successfully:', data);
+    guitarInventory.push(data);
+  })
+  .catch(error => console.error('Error adding guitar:', error));
+}
   
   function showAddPage() {
     const addPageContent = `
@@ -87,6 +96,4 @@ const guitarInventory = [
   
     // For now, we'll just log the search criteria to the console
     console.log("Search Criteria:", { serialNumber, price, builder, model, type, backwood, topwood });
-  
-    // You can add logic here to filter the guitarInventory based on search criteria
   }
